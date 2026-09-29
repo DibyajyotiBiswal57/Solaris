@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Sun-Sationals | Solaris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700&family=Unbounded:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #091430;
+      --fg: #fff;
+      --muted: rgba(255, 255, 255, 0.75);
+      --card: rgba(9, 20, 48, 0.84);
+      --accent: #4dc2ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Epilogue", sans-serif;
+      color: var(--fg);
+      background: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    section {
+      position: relative;
+      width: 100%;
+      padding: 5rem 7%;
+      isolation: isolate;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: center / cover no-repeat url("https://new.express.adobe.com/webpage/1NJFOBdKwQU9b/resources/27ae01b9-8a6f-448e-a213-59c006f342ae-mit_media_la?asset_id=b1f267bb-57a2-46e4-a9bc-5bb9e6dc97d3&img_etag=%22d5994486489e472b925722611b4a842c%22&image_assets=false&size=1024");
+      transform: scale(1.08);
+      animation: slowZoom 20s ease-in-out infinite alternate;
+    }
+
+    .hero::after {
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1), rgba(0,0,0,0.62));
+      animation: none;
+      transform: none;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Unbounded", sans-serif;
+      font-size: clamp(2.2rem, 7vw, 4.8rem);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
+      animation: riseIn 900ms ease both;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-right: 3px solid rgba(255,255,255,.8);
+      border-bottom: 3px solid rgba(255,255,255,.8);
+      transform: translateX(-50%) rotate(45deg);
+      animation: bounce 1.3s infinite;
+    }
+
+    .panel {
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h2, h3, h4 {
+      margin: 0 0 1.1rem;
+      font-family: "Unbounded", sans-serif;
+      line-height: 1.35;
+    }
+
+    h2 { font-size: clamp(1.6rem, 4vw, 2.7rem); }
+    h3 { font-size: clamp(1.4rem, 3.5vw, 2.3rem); }
+    h4 { font-size: clamp(1rem, 2.2vw, 1.35rem); text-transform: uppercase; }
+
+    p { margin: 0.5rem 0; color: var(--muted); font-size: 1.03rem; }
+
+    .split {
+      min-height: 78vh;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: stretch;
+      padding: 0;
+      background: #0d1a41;
+    }
+
+    .split .image {
+      min-height: 420px;
+      background: center/cover no-repeat url("https://new.express.adobe.com/webpage/1NJFOBdKwQU9b/resources/dd4cb753-279f-49ec-a36e-a44e1a0c63af-whatsapp_ima?asset_id=2c7e7aff-0ca9-4801-b244-7bafd9b6f29b&img_etag=%22e39fd1cdfb3f4ae5b8503f6dbfaf339b%22&image_assets=false&size=1024");
+    }
+
+    .split .text {
+      display: grid;
+      place-items: center;
+      padding: 3rem;
+      background: linear-gradient(135deg, rgba(4,10,31,.8), rgba(8,29,66,.82));
+    }
+
+    .demo iframe {
+      width: min(100%, 880px);
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: 0 16px 30px rgba(0,0,0,.35);
+      margin: 0.7rem auto 2.2rem;
+      display: block;
+    }
+
+    ol {
+      max-width: 720px;
+      margin: 1rem auto 2rem;
+      text-align: left;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.7rem 1.05rem;
+      border-radius: 8px;
+      border: 1px solid var(--fg);
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all .2s ease;
+    }
+
+    .btn:hover {
+      background: var(--fg);
+      color: #0b1637;
+      transform: translateY(-2px);
+    }
+
+    .compare {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 66vh;
+    }
+
+    .compare .card {
+      position: relative;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+      min-height: 300px;
+    }
+
+    .compare .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      animation: slowZoom 18s ease-in-out infinite alternate;
+      z-index: -2;
+    }
+
+    .compare .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(3, 8, 26, 0.55), rgba(7, 23, 62, 0.72));
+      z-index: -1;
+    }
+
+    .compare .card:first-child::before {
+      background-image: url("https://new.express.adobe.com/webpage/1NJFOBdKwQU9b/resources/624f8c14-f77b-42ba-bd74-289b828d4a8b-howitbegan_j?asset_id=f94b9e14-5c62-4d33-bd55-664139741680&img_etag=%2250c5b12e52f84996bcf40dfae0776eeb%22&image_assets=false&size=1024");
+    }
+
+    .compare .card:last-child::before {
+      background-image: url("https://new.express.adobe.com/webpage/1NJFOBdKwQU9b/resources/95f58215-a366-4c78-9d10-fcf780cc0d20-whatsapp_ima?asset_id=1196d8c8-6e7b-49e1-b8cd-1cb1f54007f1&img_etag=%2274fa81a9eff64ceab694a12055dabdca%22&image_assets=false&size=1024");
+    }
+
+    .thanks {
+      text-align: center;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+      background: radial-gradient(circle at 50% -20%, rgba(77,194,255,.2), transparent 38%);
+    }
+
+    .credits {
+      border-top: 1px solid rgba(255,255,255,.2);
+      margin-top: 1.6rem;
+      padding-top: 1.5rem;
+      max-width: 900px;
+      margin-inline: auto;
+      color: var(--muted);
+      white-space: pre-line;
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1.03) translateY(0); }
+      to { transform: scale(1.12) translateY(-10px); }
+    }
+
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) rotate(45deg) translateY(0); opacity: .8; }
+      50% { transform: translateX(-50%) rotate(45deg) translateY(8px); opacity: .35; }
+    }
+
+    @media (max-width: 900px) {
+      .split, .compare { grid-template-columns: 1fr; }
+      .split .text { padding: 2.2rem 1.2rem; }
+      section { padding: 4rem 7%; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>The Sun-Sationals</h1>
+    <span class="hint" aria-hidden="true"></span>
+  </section>
+
+  <section>
+    <div class="panel reveal">
+      <h3>Featuring -</h3>
+      <p>Hrittik Mahata (Group Leader)</p>
+      <p>Dibyajyoti Biswal</p>
+      <p>Amitesh Dash Samant</p>
+      <p>Aryaman Sarkar</p>
+    </div>
+  </section>
+
+  <section class="split">
+    <div class="image" aria-label="The Solaris sunlight tracking plant stand."></div>
+    <div class="text">
+      <div class="panel reveal">
+        <h4>This is our project</h4>
+        <p>We, The Sun-Sationals ☀️ led by Hrittik Mahata have created a sunlight tracking plant stand. We call it Solaris.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <div class="panel reveal">
+      <h3>A Demo</h3>
+      <iframe src="https://youtube.com/embed/m1NmmaW2okw?enablejsapi=1" title="Solaris Demo"></iframe>
+      <h3>What we used</h3>
+      <ol>
+        <li>LDR sensor</li>
+        <li>Servo with 180° rotation</li>
+        <li>Arduino UNO board</li>
+        <li>Some cardboard</li>
+        <li>Some colour papers</li>
+      </ol>
+      <h3>How it works</h3>
+      <p>An LDR sensor has been attached above the servo motor which lets it take readings from 0°-180° and check which position gets the most sunlight and turns toward it.</p>
+      <a class="btn" href="https://raw.githubusercontent.com/DibyajyotiBiswal57/Solaris/refs/heads/main/Solaris-servo.py" target="_blank" rel="noreferrer">Source Code</a>
+    </div>
+  </section>
+
+  <section class="compare">
+    <div class="card"><h3 class="reveal">How it began</h3></div>
+    <div class="card"><h3 class="reveal">What it turned into</h3></div>
+  </section>
+
+  <section class="thanks">
+    <div class="panel reveal">
+      <h3>Thank You</h3>
+      <p>for checking out our project.</p>
+      <p>Any doubts?</p>
+      <a class="btn" href="mailto:hrittik_mahata@dpsn.org.in">Message Hrittik Mahata</a>
+    </div>
+
+    <div class="credits reveal">
+      <strong>Credits:</strong>
+      Top contributors-
+      1. Dibyajyoti Biswal
+      2. Hrittik Mahata
+      Minor contributors -
+      1. Amitesh Dash Samant
+      2. Aryman Sarkar
+    </div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) entry.target.classList.add("show");
+      }
+    }, { threshold: 0.16 });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
